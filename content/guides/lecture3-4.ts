@@ -2,6 +2,7 @@ import { main, type LectureGuide } from "./types";
 
 export const lecture3: LectureGuide = {
   id: "lecture-3",
+  track: "oop",
   week: "Week 3",
   lecture: "Lecture 3 — Collections, Generics & the Service Layer",
   title: "Lists, maps, generics and moving logic into a service",
@@ -244,6 +245,7 @@ public class ProductController {
 
 export const lecture4: LectureGuide = {
   id: "lecture-4",
+  track: "oop",
   week: "Week 4",
   lecture: "Lecture 4 — Inheritance: Reuse Without Repetition",
   title: "Inheritance: extends, super(...), IS-A vs HAS-A",

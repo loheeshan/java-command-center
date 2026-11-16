@@ -8,7 +8,7 @@ export default function LecturesPage() {
   return (
     <>
       <PageHeader eyebrow="Start here if you are new to Java" title="Lecture Guides — learn from zero">
-        One guide per university lecture, in the same order and with the same examples as your slides (EquipmentItem, Product, DigitalProduct, PhysicalProduct, Discountable). Every line is explained in plain words, every example runs on the real JDK, and each guide ends with viva practice. You do not need the videos.
+        Part 1 follows your SD2 Java-basics lectures; Part 2 follows your 5COSC019W OOP lectures, in the same order and with the same examples as your slides. Every line is explained in plain words, every example runs on the real JDK, and each guide ends with viva practice. You do not need the videos.
       </PageHeader>
       <GuideIndex />
     </>

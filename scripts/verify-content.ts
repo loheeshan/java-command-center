@@ -67,11 +67,11 @@ async function main() {
   for (const g of GUIDES) {
     for (const n of g.next) {
       const path = n.href.split("#")[0];
-      ok(routes.has(path) || (path.startsWith("/learn/") && Boolean(LESSON_MAP[path.slice(7)])), `guide ${g.id} links to unknown page ${n.href}`);
+      ok(routes.has(path) || (path.startsWith("/learn/") && Boolean(LESSON_MAP[path.slice(7)])) || (path.startsWith("/lectures/") && GUIDES.some((x) => x.id === path.slice(10))), `guide ${g.id} links to unknown page ${n.href}`);
     }
     for (const s of g.steps) {
       if (!s.run) continue;
-      const r = await runOutput(s.run.files);
+      const r = await runOutput(s.run.files, s.run.stdin);
       if ("error" in r) ok(false, `[guide ${g.id} / ${s.title}] ${r.error}`);
       else ok(normaliseOutput(r.out!) === normaliseOutput(s.run.expectedOutput), `[guide ${g.id} / ${s.title}] output mismatch\n  expected: ${JSON.stringify(s.run.expectedOutput)}\n  actual:   ${JSON.stringify(r.out)}`);
       process.stdout.write(".");

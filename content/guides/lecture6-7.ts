@@ -2,6 +2,7 @@ import { main, type LectureGuide } from "./types";
 
 export const lecture6: LectureGuide = {
   id: "lecture-6",
+  track: "oop",
   week: "Week 6",
   lecture: "Lecture 6 — Exceptions: Failing on Purpose (+ Mock Lab briefing)",
   title: "Exceptions: try/catch/finally, custom exceptions, 404 and 400 handlers",
@@ -217,6 +218,7 @@ public Product create(@RequestBody Product p) { return productService.create(p);
 
 export const lecture7: LectureGuide = {
   id: "lecture-7",
+  track: "oop",
   week: "Week 8",
   lecture: "Lecture 7 — Spring IoC & Dependency Injection",
   title: "Who creates your objects: IoC, constructor injection, repository interfaces",

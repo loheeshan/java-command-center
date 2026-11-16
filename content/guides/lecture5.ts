@@ -40,6 +40,7 @@ class PhysicalProduct extends Product {
 
 export const lecture5: LectureGuide = {
   id: "lecture-5",
+  track: "oop",
   week: "Week 5",
   lecture: "Lecture 5 — Polymorphism: One Call, Many Answers",
   title: "Polymorphism: @Override, runtime dispatch, abstract classes, interfaces",

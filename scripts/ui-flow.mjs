@@ -37,10 +37,10 @@ await step("2. countdown targets Fri 20 Nov 13:30 Asia/Colombo", async () => {
   await page.getByText(/Friday, 20 November 2026, 13:30/).waitFor();
 });
 
-await step("3. Start here opens the Week 1 lecture guide; a guide example runs on the JDK", async () => {
+await step("3. Start here opens the SD2 Lecture 1 guide; a guide example runs on the JDK", async () => {
   await page.getByRole("button", { name: /Start here/ }).first().click();
-  await page.waitForURL(/\/lectures\/week-1/);
-  await page.getByRole("heading", { name: /Java from zero/ }).waitFor();
+  await page.waitForURL(/\/lectures\/sd2-1/);
+  await page.getByRole("heading", { name: /How Java runs/ }).waitFor();
   await page.getByRole("button", { name: "Run on JDK" }).first().click();
   await page.getByText("matches expected output").first().waitFor({ timeout: 60000 });
   await page.getByRole("button", { name: /Mark this guide finished/ }).click();
@@ -73,7 +73,7 @@ await step("6. mark lesson complete → path advances after refresh (persistence
   await page.getByText(/1\/13 stages/).waitFor();
   await page.getByText(/You are here — stage 2/).waitFor();
   await page.goto(BASE + "/lectures", { waitUntil: "networkidle" });
-  await page.getByText("1/7", { exact: true }).waitFor();
+  await page.getByText("1/15", { exact: true }).waitFor();
 });
 
 await step("7. Ticketing lab: untouched starter builds and fails every test", async () => {

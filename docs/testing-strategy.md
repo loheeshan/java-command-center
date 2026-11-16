@@ -7,9 +7,9 @@ All results below were produced by actually running the commands (last run 17 No
 | Unit (TS) | `npm test` | dispatch model (B3/B4/B6, overflow), quiz grading for every type, spaced review, Colombo countdown, rubric totals, storage migration, schedule, readiness, runner parsers | 28/28 |
 | Runner | `npm run test:runner` | real javac/java: output, compile-error lines, infinite-loop kill, output cap, stdin, exceptions, multi-file polymorphism, path traversal rejected | 8/8 |
 | Graders | `npm run test:grader` | for **both** projects: untouched starter compiles and passes 0 tests; reference passes all; an injected typical bug fails only the right tests; a syntax error is located | Dispatch 4/4 (0/33 → 33/33) · Ticketing 4/4 (0/24 → 24/24) |
-| Content | `npm run test:content` | every lesson example + trace output, every runnable lecture-guide step (27) and guide link, every runnable predict question, every coding-task solution (all pass) and starter (not all pass), integrity of ids/links/video chapters | 474/474 |
-| Pages in Chrome | `npm run test:pages` | every page (29, incl. 8 lecture-guide pages) at 1440 px and 390 px: no console/page errors (incl. hydration), no horizontal overflow | 0 problems |
-| Learner flow in Chrome | `npm run test:ui` | dashboard path + Start here → Week 1 lecture guide (JDK run, mark finished) → lesson → real JDK run → quiz → mark complete → refresh persists → Ticketing lab Maven run → simulator → coverage → OOP lab guide | 10/10 |
+| Content | `npm run test:content` | every lesson example + trace output, every runnable lecture-guide step (59, incl. Scanner input) and guide link, every runnable predict question, every coding-task solution (all pass) and starter (not all pass), integrity of ids/links/video chapters | 522/522 |
+| Pages in Chrome | `npm run test:pages` | every page (37, incl. 16 lecture-guide pages) at 1440 px and 390 px: no console/page errors (incl. hydration), no horizontal overflow | 0 problems |
+| Learner flow in Chrome | `npm run test:ui` | dashboard path + Start here → SD2 Lecture 1 guide (JDK run, mark finished) → lesson → real JDK run → quiz → mark complete → refresh persists → Ticketing lab Maven run → simulator → coverage → OOP lab guide | 10/10 |
 | Types / build | `npm run typecheck`, `npm run build` | whole app incl. runner; 40 routes | clean / success |
 
 `test:pages` and `test:ui` need the app and runner running (`npm run dev`) and drive the installed Chrome through `playwright-core` (no browser download).

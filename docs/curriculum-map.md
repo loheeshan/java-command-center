@@ -32,6 +32,22 @@ Source key: **U** university material · **M** mock paper · **S** supplemental.
 Question bank: 108 questions across mcq, concept, multi-select, predict-output, find-the-error, code-completion and order-the-steps (practical problems are the 11 coding tasks + Exam Lab).
 
 ## Lecture Guides (learn from zero) — `/lectures`
+**Part 1 — Java basics (SD2, 4COSC010C)**, from `SD2 Lec notes.zip` (extracted unchanged to `materials/SD2/`, not committed):
+
+| Guide | Follows | Runnable steps |
+|---|---|---|
+| sd2-1 How Java runs, output, Scanner input | SD2 Lecture 1 | 2 |
+| sd2-2 Types, casting, operators, constants, if/switch | SD2 Lecture 2 | 5 |
+| sd2-3 Loops, break/continue, validation, debugging | SD2 Lecture 3 | 5 |
+| sd2-4 Arrays, 2D arrays, search, sort | SD2 Lecture 4 | 6 |
+| sd2-5 Methods, scope, overloading, recursion | SD2 Lecture 5 | 5 |
+| sd2-8 Classes & objects, Week 09 activity | SD2 Lecture 8 + Week 09 | 4 |
+| sd2-files File handling | SD2 file-handling tutorial | 1 |
+| sd2-10 Queues, stacks, Collections Framework | SD2 Lecture 10 | 4 |
+
+SD2 slide errors found while writing them (shown on the guide pages): `char` range given as 0–255 (it is 0–65,535); "switch only on byte/short/int/char" contradicted by the String switch example (allowed since Java 7); `students_ID[3]` on a 3-element array (throws); `for (int element : students_ID)` over a String array (does not compile); `new Student()` with only a one-argument constructor (does not compile).
+
+**Part 2 — OOP & Spring (5COSC019W)**:
 `content/guides/` — one guide per university lecture, in lecture order, using the lecturer's own example classes (EquipmentItem, Product, DigitalProduct, PhysicalProduct, ShoppingCart, Discountable). Each guide: plain-language steps, line-by-line meanings, runnable examples (all executed by `test:content`), "Try this", "In the exam", self-checks, viva practice with model answers, and links to the matching lessons/labs. Lessons link back to their guide ("New to this topic?").
 
 | Guide | Follows | Runnable steps | Viva Qs |

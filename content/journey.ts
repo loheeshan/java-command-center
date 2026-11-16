@@ -37,22 +37,22 @@ const bestLab = (p: ProgressState, project: string) =>
 export const JOURNEY: JourneyStage[] = [
   {
     id: "start", title: "Start: how Java runs", when: "Tue 19:00", minutes: 35,
-    why: "New to Java? Start with the Week 1 lecture guide (no video needed), then the Quick Start: source → javac → bytecode → JVM.",
-    items: [G("week-1", "Lecture guide: Week 1 — Java from zero"), L("java-quickstart", "Java Quick Start"), { label: "Execution visualizer", href: "/oop-lab#execution" }],
+    why: "New to Java? Start with the SD2 Lecture 1 guide (no video needed), then the Quick Start: source → javac → bytecode → JVM.",
+    items: [G("sd2-1", "SD2 guide: how Java runs, first program"), L("java-quickstart", "Java Quick Start"), { label: "Execution visualizer", href: "/oop-lab#execution" }],
     doneWhen: "Java Quick Start lesson marked complete",
     isDone: (p) => lessonsDone(p, ["java-quickstart"]),
   },
   {
-    id: "syntax", title: "Java syntax for a JS/TS developer", when: "Tue 19:30", minutes: 85,
-    why: "Types, integer division, String equality, loops, methods, arrays and ArrayList.",
-    items: [L("java-syntax-bridge", "Variables, types, control flow"), L("methods-arrays-lists", "Methods, arrays, ArrayList")],
+    id: "syntax", title: "Java basics: types, loops, arrays, methods", when: "Tue 19:30", minutes: 150,
+    why: "Your SD2 lectures 2–5 as guides, then the exam-focused lessons. Already know the basics? Skim the guides and do the lesson quizzes.",
+    items: [G("sd2-2", "SD2 guide: types, operators, if/switch"), G("sd2-3", "SD2 guide: loops & validation"), G("sd2-4", "SD2 guide: arrays, search, sort"), G("sd2-5", "SD2 guide: methods & recursion"), L("java-syntax-bridge", "Variables, types, control flow"), L("methods-arrays-lists", "Methods, arrays, ArrayList")],
     doneWhen: "both lessons complete",
     isDone: (p) => lessonsDone(p, ["java-syntax-bridge", "methods-arrays-lists"]),
   },
   {
     id: "classes", title: "Classes, constructors, encapsulation", when: "Tue 20:00", minutes: 80,
     why: "The basis of every model class in the practical (Week 01 Circle, Lecture 2 Product).",
-    items: [G("lecture-2", "Lecture guide: Lecture 2 — encapsulation"), L("classes-objects", "Classes & objects"), L("constructors-encapsulation", "Constructors & encapsulation"), { label: "Object memory visualizer", href: "/oop-lab#memory" }],
+    items: [G("sd2-8", "SD2 guide: first classes & objects"), G("week-1", "Lecture guide: Week 1 — your first class"), G("lecture-2", "Lecture guide: Lecture 2 — encapsulation"), L("classes-objects", "Classes & objects"), L("constructors-encapsulation", "Constructors & encapsulation"), { label: "Object memory visualizer", href: "/oop-lab#memory" }],
     doneWhen: "both lessons complete",
     isDone: (p) => lessonsDone(p, ["classes-objects", "constructors-encapsulation"]),
   },

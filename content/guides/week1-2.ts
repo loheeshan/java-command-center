@@ -2,6 +2,7 @@ import { main, type LectureGuide } from "./types";
 
 export const week1: LectureGuide = {
   id: "week-1",
+  track: "oop",
   week: "Week 1",
   lecture: "Lecture 1 + Week 1 OOP notes + Java Refresher tutorial",
   title: "Java from zero, then your first class",
@@ -259,6 +260,7 @@ public class Main {
 
 export const lecture2: LectureGuide = {
   id: "lecture-2",
+  track: "oop",
   week: "Week 2",
   lecture: "Lecture 2 — Encapsulation & UML Class Diagrams",
   title: "Encapsulation: private fields, getters, two constructors, static, UML",

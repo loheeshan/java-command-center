@@ -51,8 +51,11 @@ function Step({ guideId, step, index }: { guideId: string; step: GuideStep; inde
 
       {step.run && (
         <div>
-          <p className="mb-1.5 text-xs text-ink-3">Read it, predict the output, then press <strong>Run on JDK</strong>. You can edit the code and run again; <em>Reset</em> restores it.</p>
-          <CodeRunner files={step.run.files} expectedOutput={step.run.expectedOutput} storageKey={`guide:${guideId}:${index}`} layout="split" />
+          <p className="mb-1.5 text-xs text-ink-3">
+            Read it, predict the output, then press <strong>Run on JDK</strong>. You can edit the code and run again; <em>Reset</em> restores it.
+            {step.run.stdin !== undefined && <> The <strong>Input</strong> box is what the user &quot;types&quot; — one value per line. Change it and run again.</>}
+          </p>
+          <CodeRunner files={step.run.files} expectedOutput={step.run.expectedOutput} stdin={step.run.stdin} showStdin={step.run.stdin !== undefined} storageKey={`guide:${guideId}:${index}`} layout="split" />
         </div>
       )}
 
@@ -107,7 +110,7 @@ export function GuideView({ id }: { id: string }) {
       <article className="min-w-0 space-y-8">
         <header>
           <Link href="/lectures" className="mb-3 inline-flex items-center gap-1 text-xs text-ink-3 hover:text-ink"><ArrowLeft size={12} /> All lecture guides</Link>
-          <p className="text-xs font-medium uppercase tracking-wide text-accent">{guide.week} · {guide.lecture}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-accent">{guide.track === "sd2" ? "Part 1 · Java basics (SD2, 4COSC010C)" : "Part 2 · OOP & Spring (5COSC019W)"} · {guide.lecture}</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-ink">{guide.title}</h1>
           <p className="mt-2 text-sm text-ink-2"><Markdown text={guide.goal} inline /></p>
           <div className="mt-2 flex flex-wrap gap-1.5">

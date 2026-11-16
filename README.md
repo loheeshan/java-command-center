@@ -30,10 +30,10 @@ The runner's default **local mode is not a sandbox**: code runs as a normal JDK 
 
 ## Where things are
 - `docs/` — source inventory, exam requirements, curriculum map, architecture, testing strategy, plan.
-- `materials/OOP-26/` — your original materials extracted unchanged from `OOP-26.rar`.
+- `materials/OOP-26/` and `materials/SD2/` — your original materials extracted unchanged (kept out of git).
 - `java-grader/dispatch/` — university starter (pristine), worked solution, 33 grader tests.
 - `java-grader/tickets/` — original real-paper-shape practice project, reference, 24 grader tests.
-- New to Java? Open **Lecture Guides** (`/lectures`): one plain-language guide per lecture, no videos needed.
+- New to Java? Open **Lecture Guides** (`/lectures`): Part 1 = your SD2 Java-basics lectures, Part 2 = your 5COSC019W OOP lectures; one plain-language guide per lecture, no videos needed.
 - Start at the dashboard: the **start → finish path** tells you what to do next; `/coverage` shows what the exam needs and what is covered.
 
 **Practice simulation — not a prediction of the actual examination.**

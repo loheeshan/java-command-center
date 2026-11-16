@@ -13,7 +13,7 @@ export interface GuideStep {
   code?: string;
   codeTitle?: string;
   /** Code you can run on the JDK. Single Main.java unless stated. */
-  run?: { files: SourceFile[]; expectedOutput: string };
+  run?: { files: SourceFile[]; expectedOutput: string; /** keyboard input fed to Scanner */ stdin?: string };
   /** Line-by-line reading of the code above. */
   lines?: { code: string; meaning: string }[];
   table?: { head: string[]; rows: string[][] };
@@ -27,6 +27,8 @@ export interface GuideStep {
 
 export interface LectureGuide {
   id: string;
+  /** Which university module the lecture belongs to. */
+  track: "sd2" | "oop";
   /** e.g. "Week 1" */
   week: string;
   lecture: string;
