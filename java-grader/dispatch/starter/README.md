@@ -1,0 +1,58 @@
+# Emergency Dispatch Energy Planner API — Practice Starter
+
+## Required laboratory development environment
+
+This project is configured for the following environment:
+
+- **Java Development Kit:** Java 25
+- **IDE:** IntelliJ IDEA or another approved Java IDE
+- **Build tool:** Lab-provided Apache Maven 3.9 or later
+- **Framework and managed dependencies:** Spring Boot 4.1.1
+- **Project type:** Maven
+
+Use the Java 25 JDK and the lab-provided Maven installation. In IntelliJ IDEA or
+another approved IDE, open/import the folder that contains `pom.xml` as an existing
+Maven project. Allow Maven to resolve the dependencies before running the application.
+
+Check the configured environment from a terminal:
+
+```bash
+java -version
+mvn -version
+```
+
+The Java version should report 25, and Maven should report 3.9 or later.
+
+## Run the application
+
+From the project root (the directory containing `pom.xml`), run:
+
+```bash
+mvn clean spring-boot:run
+```
+
+Alternatively, run `DispatchApplication.main()` from the IDE.
+
+The application is configured to use port **8082**.
+
+## Student instructions
+
+- Complete the TODO sections identified in the accompanying practice paper.
+- Create any missing classes specified in the paper.
+- Do not replace the supplied parent class, model contracts or repository API unless a task
+  explicitly instructs you to do so.
+- The starter intentionally contains incomplete methods. They are assessment tasks and are
+  not expected to work until implemented.
+- Package the entire project, including `pom.xml` and `src`, for practice submission.
+
+This project is completely separate from the actual examination. Sample tasks do not predict
+the real assessment.
+
+## Swagger UI
+
+After starting the application, open:
+
+- Swagger UI: `http://localhost:8082/swagger-ui.html`
+- OpenAPI JSON: `http://localhost:8082/v3/api-docs`
+
+Swagger UI is provided by `springdoc-openapi-starter-webmvc-ui` (version 3.2.0).

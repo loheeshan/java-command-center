@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+.tools/
+.runner-token
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+java-grader/**/target/
+.screenshots/
+.runner.log
+.web.log
+
+# University materials (copyrighted; kept locally only)
+OOP-26.rar
+materials/
+screenshots/

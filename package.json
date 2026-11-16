@@ -1,0 +1,39 @@
+{
+  "name": "java-command-center",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Java Command Center \u2014 interactive Java, OOP & Spring Boot exam preparation (5COSC019W)",
+  "scripts": {
+    "dev": "node scripts/dev-all.mjs",
+    "dev:web": "next dev -p 3000",
+    "runner": "tsx runner/server.ts",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:runner": "tsx runner/selftest.ts",
+    "test:grader": "tsx runner/grader-selftest.ts",
+    "test:content": "tsx scripts/verify-content.ts",
+    "test:pages": "node scripts/browser-check.mjs .screenshots",
+    "test:ui": "node scripts/ui-flow.mjs .screenshots"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "4.7.0",
+    "lucide-react": "1.73.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "playwright-core": "1.65.1",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

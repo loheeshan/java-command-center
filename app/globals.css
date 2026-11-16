@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0f17;
+  --color-surface: #111723;
+  --color-surface-2: #161e2d;
+  --color-surface-3: #1c2638;
+  --color-line: #232f45;
+  --color-line-strong: #2e3c57;
+  --color-ink: #e6ebf5;
+  --color-ink-2: #aab4c8;
+  --color-ink-3: #74809a;
+  --color-accent: #38bdf8;
+  --color-accent-2: #0ea5e9;
+  --color-accent-soft: #0c2a3d;
+  --color-ok: #34d399;
+  --color-ok-soft: #0b2e24;
+  --color-warn: #fbbf24;
+  --color-warn-soft: #33270a;
+  --color-bad: #f87171;
+  --color-bad-soft: #3a1418;
+  --color-violet: #a78bfa;
+
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Cascadia Mono", Consolas, ui-monospace, monospace;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #0369a1;
+  color: white;
+}
+
+/* Thin scrollbars that match the surfaces */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Grid items default to min-width:auto, letting wide code blocks push the page sideways on phones */
+.grid > * {
+  min-width: 0;
+}
+
+.prose-jcc code {
+  overflow-wrap: anywhere;
+}
+
+.prose-jcc p {
+  margin: 0.5rem 0;
+  line-height: 1.65;
+}
+.prose-jcc ul {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+.prose-jcc li {
+  margin: 0.2rem 0;
+  line-height: 1.55;
+}
+.prose-jcc code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-line);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  color: #cfe8ff;
+}
+.prose-jcc strong {
+  color: white;
+  font-weight: 600;
+}
+
+/* Syntax colours for static code blocks */
+.tok-kw { color: #7dd3fc; }
+.tok-type { color: #c4b5fd; }
+.tok-str { color: #a7f3d0; }
+.tok-num { color: #fcd34d; }
+.tok-com { color: #64748b; font-style: italic; }
+.tok-ann { color: #f9a8d4; }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgb(56 189 248 / 0.45); }
+  100% { box-shadow: 0 0 0 10px rgb(56 189 248 / 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 1.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
