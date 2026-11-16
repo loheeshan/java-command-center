@@ -13,6 +13,7 @@ import { LESSONS, MODULES, LESSON_MAP } from "../content/modules";
 import { QUESTIONS, QUESTION_MAP } from "../content/questions";
 import { CODING_TASKS, buildHarness, parseHarnessOutput, testCount } from "../content/coding-tasks";
 import { VIDEOS } from "../content/videos";
+import { GUIDES } from "../content/guides";
 import { normaliseOutput } from "../lib/quiz/engine";
 import type { SourceFile } from "../runner/protocol";
 
@@ -59,6 +60,22 @@ async function main() {
     if ("error" in tr) ok(false, `[${l.id}] trace: ${tr.error}`);
     else ok(normaliseOutput(tr.out!) === normaliseOutput(l.trace.output), `[${l.id}] trace output mismatch\n  expected: ${JSON.stringify(l.trace.output)}\n  actual:   ${JSON.stringify(tr.out)}`);
     process.stdout.write(".");
+  }
+
+  // lecture guides: every runnable step + every internal link
+  const routes = new Set(["/", "/roadmap", "/learn", "/oop-lab", "/algorithms", "/spring-boot", "/playground", "/exam", "/exam/tickets", "/exam/simulator", "/coverage", "/quizzes", "/revision", "/progress", "/resources", "/lectures"]);
+  for (const g of GUIDES) {
+    for (const n of g.next) {
+      const path = n.href.split("#")[0];
+      ok(routes.has(path) || (path.startsWith("/learn/") && Boolean(LESSON_MAP[path.slice(7)])), `guide ${g.id} links to unknown page ${n.href}`);
+    }
+    for (const s of g.steps) {
+      if (!s.run) continue;
+      const r = await runOutput(s.run.files);
+      if ("error" in r) ok(false, `[guide ${g.id} / ${s.title}] ${r.error}`);
+      else ok(normaliseOutput(r.out!) === normaliseOutput(s.run.expectedOutput), `[guide ${g.id} / ${s.title}] output mismatch\n  expected: ${JSON.stringify(s.run.expectedOutput)}\n  actual:   ${JSON.stringify(r.out)}`);
+      process.stdout.write(".");
+    }
   }
 
   // runnable predict questions

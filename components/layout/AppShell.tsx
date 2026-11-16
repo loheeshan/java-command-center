@@ -14,6 +14,7 @@ import { cn } from "@/components/ui/primitives";
 const NAV = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/roadmap", label: "Study Roadmap", icon: CalendarClock },
+  { href: "/lectures", label: "Lecture Guides (from zero)", icon: GraduationCap },
   { href: "/learn", label: "Java Foundations", icon: BookOpen },
   { href: "/oop-lab", label: "OOP Lab", icon: Boxes },
   { href: "/algorithms", label: "Collections & Algorithms", icon: Network },

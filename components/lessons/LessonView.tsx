@@ -21,6 +21,7 @@ import { CodeRunner } from "@/components/playground/CodeRunner";
 import { CodingTaskRunner } from "./CodingTaskRunner";
 import { QuestionCard } from "@/components/quizzes/QuestionCard";
 import { Visualizer } from "@/components/visualizers";
+import { GUIDE_MAP, LESSON_GUIDE } from "@/content/guides";
 
 const SOURCE_TONE = { university: "accent", "mock-paper": "warn", supplemental: "violet", advanced: "neutral" } as const;
 const SOURCE_LABEL = { university: "University material", "mock-paper": "Mock paper", supplemental: "Supplemental", advanced: "Optional / advanced" } as const;
@@ -128,6 +129,16 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           </div>
         </header>
 
+        {LESSON_GUIDE[lesson.id] && GUIDE_MAP[LESSON_GUIDE[lesson.id]] && (
+          <Link href={`/lectures/${LESSON_GUIDE[lesson.id]}`} className="flex items-start gap-2 rounded-lg border border-accent/40 bg-accent-soft p-3 text-sm text-ink hover:border-accent">
+            <Lightbulb size={16} className="mt-0.5 shrink-0 text-accent" />
+            <span>
+              <strong>New to this topic?</strong> Read the step-by-step guide first: <strong>{GUIDE_MAP[LESSON_GUIDE[lesson.id]].week}: {GUIDE_MAP[LESSON_GUIDE[lesson.id]].title}</strong>.
+              It follows your lecture slides line by line. This lesson is the faster exam-focused version.
+            </span>
+          </Link>
+        )}
+
         <Section id="what" n={1} title="What it is, why it exists, when you use it" icon={<Target size={16} />}>
           <div className="grid gap-3 md:grid-cols-2">
             <Card className="p-4"><p className="mb-1 text-xs font-medium uppercase tracking-wide text-ink-3">What</p><Markdown text={lesson.what} /></Card>
@@ -170,7 +181,7 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
           </div>
         )}
 
-        <Section id="compare" n={2} title={`Compared with ${lesson.compare.lang}`} icon={<GitCompare size={16} />}>
+        <Section id="compare" n={2} title={`Optional: compared with ${lesson.compare.lang} (skip if you do not know it)`} icon={<GitCompare size={16} />}>
           <div className="grid gap-3 lg:grid-cols-2">
             <CodeBlock code={lesson.compare.other} title={lesson.compare.lang} />
             <CodeBlock code={lesson.compare.java} title="Java" />

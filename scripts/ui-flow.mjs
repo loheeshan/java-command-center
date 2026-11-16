@@ -37,10 +37,18 @@ await step("2. countdown targets Fri 20 Nov 13:30 Asia/Colombo", async () => {
   await page.getByText(/Friday, 20 November 2026, 13:30/).waitFor();
 });
 
-await step("3. Start here opens the first lesson", async () => {
+await step("3. Start here opens the Week 1 lecture guide; a guide example runs on the JDK", async () => {
   await page.getByRole("button", { name: /Start here/ }).first().click();
-  await page.waitForURL(/\/learn\/java-quickstart/);
+  await page.waitForURL(/\/lectures\/week-1/);
+  await page.getByRole("heading", { name: /Java from zero/ }).waitFor();
+  await page.getByRole("button", { name: "Run on JDK" }).first().click();
+  await page.getByText("matches expected output").first().waitFor({ timeout: 60000 });
+  await page.getByRole("button", { name: /Mark this guide finished/ }).click();
+  await page.getByRole("button", { name: /Guide finished/ }).waitFor();
+  await shot("flow-3-guide.png");
+  await page.goto(BASE + "/learn/java-quickstart", { waitUntil: "networkidle" });
   await page.getByRole("heading", { name: /Java Quick Start/ }).waitFor();
+  await page.getByText("New to this topic?").waitFor();
 });
 
 await step("4. lesson example runs on the real JDK and matches expected output", async () => {
@@ -64,6 +72,8 @@ await step("6. mark lesson complete → path advances after refresh (persistence
   await page.goto(BASE + "/", { waitUntil: "networkidle" });
   await page.getByText(/1\/13 stages/).waitFor();
   await page.getByText(/You are here — stage 2/).waitFor();
+  await page.goto(BASE + "/lectures", { waitUntil: "networkidle" });
+  await page.getByText("1/7", { exact: true }).waitFor();
 });
 
 await step("7. Ticketing lab: untouched starter builds and fails every test", async () => {

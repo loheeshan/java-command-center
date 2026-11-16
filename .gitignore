@@ -15,3 +15,5 @@ java-grader/**/target/
 OOP-26.rar
 materials/
 screenshots/
+*.zip
+!java-grader/**/*.zip

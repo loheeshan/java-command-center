@@ -9,6 +9,8 @@ export interface JourneyItem {
   href: string;
   /** lesson id, if this item is a lesson (completion = marked complete) */
   lessonId?: string;
+  /** lecture guide id, if this item is a guide (completion = marked finished) */
+  guideId?: string;
 }
 
 export interface JourneyStage {
@@ -24,14 +26,19 @@ export interface JourneyStage {
 
 const lessonsDone = (p: ProgressState, ids: string[]) => ids.every((id) => Boolean(p.lessons[id]?.completedAt));
 const L = (id: string, label: string): JourneyItem => ({ label, href: `/learn/${id}`, lessonId: id });
+const G = (id: string, label: string): JourneyItem => ({ label, href: `/lectures/${id}`, guideId: id });
+
+/** Whether a journey item has been completed (lessons: marked complete; guides: marked finished). */
+export const itemDone = (p: ProgressState, i: JourneyItem) =>
+  i.lessonId ? Boolean(p.lessons[i.lessonId]?.completedAt) : i.guideId ? p.code[`guide:done:${i.guideId}`] === "1" : false;
 const bestLab = (p: ProgressState, project: string) =>
   Math.max(-1, ...p.exams.filter((e) => (e.projectId ?? "dispatch") === project).map((e) => e.total));
 
 export const JOURNEY: JourneyStage[] = [
   {
     id: "start", title: "Start: how Java runs", when: "Tue 19:00", minutes: 35,
-    why: "Set up the mental model: source → javac → bytecode → JVM. Run your first program here.",
-    items: [L("java-quickstart", "Java Quick Start"), { label: "Execution visualizer", href: "/oop-lab#execution" }],
+    why: "New to Java? Start with the Week 1 lecture guide (no video needed), then the Quick Start: source → javac → bytecode → JVM.",
+    items: [G("week-1", "Lecture guide: Week 1 — Java from zero"), L("java-quickstart", "Java Quick Start"), { label: "Execution visualizer", href: "/oop-lab#execution" }],
     doneWhen: "Java Quick Start lesson marked complete",
     isDone: (p) => lessonsDone(p, ["java-quickstart"]),
   },
@@ -45,7 +52,7 @@ export const JOURNEY: JourneyStage[] = [
   {
     id: "classes", title: "Classes, constructors, encapsulation", when: "Tue 20:00", minutes: 80,
     why: "The basis of every model class in the practical (Week 01 Circle, Lecture 2 Product).",
-    items: [L("classes-objects", "Classes & objects"), L("constructors-encapsulation", "Constructors & encapsulation"), { label: "Object memory visualizer", href: "/oop-lab#memory" }],
+    items: [G("lecture-2", "Lecture guide: Lecture 2 — encapsulation"), L("classes-objects", "Classes & objects"), L("constructors-encapsulation", "Constructors & encapsulation"), { label: "Object memory visualizer", href: "/oop-lab#memory" }],
     doneWhen: "both lessons complete",
     isDone: (p) => lessonsDone(p, ["classes-objects", "constructors-encapsulation"]),
   },
@@ -53,6 +60,7 @@ export const JOURNEY: JourneyStage[] = [
     id: "oop", title: "Inheritance, abstraction, polymorphism, interfaces", when: "Tue 21:30", minutes: 175,
     why: "Exam Tasks 1–2 in every paper: complete a subclass with super(...), create a new subclass, override abstract methods.",
     items: [
+      G("lecture-4", "Lecture guide: Lecture 4 — inheritance"), G("lecture-5", "Lecture guide: Lecture 5 — polymorphism"),
       L("inheritance-super", "extends & super(...)"), L("abstract-overriding", "Abstract & @Override"),
       L("polymorphism", "Polymorphism"), L("interfaces-enums", "Interfaces & enums"), { label: "OOP Lab (all four visualizers)", href: "/oop-lab" },
     ],
@@ -62,14 +70,14 @@ export const JOURNEY: JourneyStage[] = [
   {
     id: "collections", title: "Collections & sorting", when: "Wed 09:00", minutes: 85,
     why: "Repositories hold Maps and Lists; planners sort with multi-key Comparators.",
-    items: [L("collections-generics", "List, Map, generics"), L("comparator-sorting", "Comparator sorting"), { label: "Sorting visualizer", href: "/algorithms#sorting" }],
+    items: [G("lecture-3", "Lecture guide: Lecture 3 — collections"), L("collections-generics", "List, Map, generics"), L("comparator-sorting", "Comparator sorting"), { label: "Sorting visualizer", href: "/algorithms#sorting" }],
     doneWhen: "both lessons complete",
     isDone: (p) => lessonsDone(p, ["collections-generics", "comparator-sorting"]),
   },
   {
     id: "exceptions", title: "Exceptions, validation, overflow", when: "Wed 13:15", minutes: 70,
     why: "The 404 and 400 tasks start here: custom exceptions, boundary validation, long + Math.toIntExact.",
-    items: [L("exceptions-validation", "Exceptions & validation"), L("overflow-long", "Overflow-safe arithmetic")],
+    items: [G("lecture-6", "Lecture guide: Lecture 6 — exceptions"), L("exceptions-validation", "Exceptions & validation"), L("overflow-long", "Overflow-safe arithmetic")],
     doneWhen: "both lessons complete",
     isDone: (p) => lessonsDone(p, ["exceptions-validation", "overflow-long"]),
   },
@@ -84,7 +92,7 @@ export const JOURNEY: JourneyStage[] = [
     id: "spring", title: "Spring Boot REST API", when: "Wed 18:00", minutes: 185,
     why: "40 marks are Spring Boot: controllers, services, injection, GET/POST/DELETE, 201/204/400/404 and the global handler.",
     items: [
-      L("spring-boot-basics", "Spring Boot foundations"), L("spring-rest-params", "@PathVariable, @RequestBody, 201"),
+      G("lecture-7", "Lecture guide: Lecture 7 — dependency injection"), L("spring-boot-basics", "Spring Boot foundations"), L("spring-rest-params", "@PathVariable, @RequestBody, 201"),
       L("spring-layers-di", "Layers & injection"), L("spring-exception-handling", "Global exception handling"),
       L("rest-crud-extras", "GET by id, DELETE, Optional"), { label: "Request-flow visualizer", href: "/spring-boot" },
     ],

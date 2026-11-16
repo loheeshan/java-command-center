@@ -33,6 +33,7 @@ The runner's default **local mode is not a sandbox**: code runs as a normal JDK 
 - `materials/OOP-26/` — your original materials extracted unchanged from `OOP-26.rar`.
 - `java-grader/dispatch/` — university starter (pristine), worked solution, 33 grader tests.
 - `java-grader/tickets/` — original real-paper-shape practice project, reference, 24 grader tests.
+- New to Java? Open **Lecture Guides** (`/lectures`): one plain-language guide per lecture, no videos needed.
 - Start at the dashboard: the **start → finish path** tells you what to do next; `/coverage` shows what the exam needs and what is covered.
 
 **Practice simulation — not a prediction of the actual examination.**

@@ -5,7 +5,7 @@ import { mkdirSync } from "node:fs";
 import path from "node:path";
 
 const out = process.argv[2] ?? "screenshots";
-const PAGES = process.argv.slice(3).length ? process.argv.slice(3) : ["/", "/roadmap", "/learn", "/learn/polymorphism", "/learn/interfaces-enums", "/learn/rest-crud-extras", "/oop-lab", "/algorithms", "/spring-boot", "/playground", "/exam", "/exam/tickets", "/exam/simulator", "/coverage", "/quizzes", "/revision", "/progress", "/resources"];
+const PAGES = process.argv.slice(3).length ? process.argv.slice(3) : ["/", "/roadmap", "/learn", "/learn/polymorphism", "/learn/interfaces-enums", "/learn/rest-crud-extras", "/oop-lab", "/algorithms", "/spring-boot", "/playground", "/exam", "/exam/tickets", "/exam/simulator", "/coverage", "/quizzes", "/revision", "/progress", "/resources", "/lectures", "/lectures/week-1", "/lectures/lecture-2", "/lectures/lecture-3", "/lectures/lecture-4", "/lectures/lecture-5", "/lectures/lecture-6", "/lectures/lecture-7"];
 const CHROME = process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe";
 mkdirSync(out, { recursive: true });
 

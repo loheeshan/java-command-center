@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, ChevronDown, ChevronUp, Circle, Flag, MapPin, Trophy, X } from "lucide-react";
-import { JOURNEY, journeyStatus } from "@/content/journey";
+import { JOURNEY, journeyStatus, itemDone as isItemDone } from "@/content/journey";
 import { progress, useHydrated, useProgress } from "@/lib/progress/store";
 import { Badge, Button, Card, cn } from "@/components/ui/primitives";
 
@@ -15,6 +15,7 @@ export function HowItWorks({ compact }: { compact?: boolean }) {
   const hydrated = useHydrated();
   if (!hydrated || (compact && p.code[GUIDE_KEY])) return null;
   const steps = [
+    ["New to Java? Lecture Guides", "One guide per university lecture, same order and examples as your slides, every line explained. No video needed. Each path stage links its guide first."],
     ["Follow the path below", "Stages go from first Java program to exam-ready. Each one says why it matters and exactly when it counts as done."],
     ["Inside each lesson", "Read → run the example on the real JDK → trace the output → solve the coding challenge → quiz → mark complete."],
     ["Labs = see it move", "OOP Lab, Algorithms and Spring Boot Lab are interactive visualizers. Use them while doing the matching lesson."],
@@ -29,7 +30,7 @@ export function HowItWorks({ compact }: { compact?: boolean }) {
       )}
       <p className="font-mono text-[11px] uppercase tracking-widest text-accent">New here? Read this first</p>
       <h2 className="mt-1 text-lg font-semibold text-ink">How the Command Center works</h2>
-      <ol className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ol className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {steps.map(([t, d], i) => (
           <li key={t} className="rounded-lg border border-line bg-surface-2 p-3">
             <p className="flex items-center gap-2 text-sm font-medium text-ink"><span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent-soft font-mono text-[11px] text-accent">{i + 1}</span>{t}</p>
@@ -51,7 +52,7 @@ export function Journey() {
   const [showAll, setShowAll] = useState(false);
   const st = journeyStatus(p);
   const current = st.currentIndex === -1 ? null : JOURNEY[st.currentIndex];
-  const nextItem = current?.items.find((i) => !i.lessonId || !p.lessons[i.lessonId]?.completedAt) ?? current?.items[0];
+  const nextItem = current?.items.find((i) => (i.lessonId || i.guideId) && !isItemDone(p, i)) ?? current?.items[0];
   const visible = showAll ? JOURNEY : JOURNEY.filter((_, i) => st.currentIndex === -1 || Math.abs(i - st.currentIndex) <= 2 || i === JOURNEY.length - 1 || i === 0);
 
   return (
@@ -117,11 +118,11 @@ export function Journey() {
                       <p className="text-xs text-ink-2">{s.why}</p>
                       <ul className="mt-2 flex flex-wrap gap-1.5">
                         {s.items.map((it) => {
-                          const itemDone = it.lessonId ? Boolean(p.lessons[it.lessonId]?.completedAt) : false;
+                          const itemDone = isItemDone(p, it);
                           return (
                             <li key={it.href}>
                               <Link href={it.href} className={cn("flex items-center gap-1 rounded-md border px-2 py-1 text-xs", itemDone ? "border-ok/40 text-ink-2" : "border-line text-accent hover:border-accent/50")}>
-                                {it.lessonId && (itemDone ? <CheckCircle2 size={11} className="text-ok" /> : <Circle size={11} />)} {it.label}
+                                {(it.lessonId || it.guideId) && (itemDone ? <CheckCircle2 size={11} className="text-ok" /> : <Circle size={11} />)} {it.label}
                               </Link>
                             </li>
                           );
