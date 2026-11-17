@@ -37,3 +37,17 @@ The runner's default **local mode is not a sandbox**: code runs as a normal JDK 
 - Start at the dashboard: the **start → finish path** tells you what to do next; `/coverage` shows what the exam needs and what is covered.
 
 **Practice simulation — not a prediction of the actual examination.**
+
+## Hosting online (with the JDK)
+
+Vercel cannot run Java, so the online version runs as one Docker container (`Dockerfile`):
+Next.js + the Java runner + JDK 25 + Maven, with all Maven dependencies downloaded at build time.
+The runner stays on `127.0.0.1` inside the container; only the website port is public.
+
+- Needs about **2 GB RAM** (Maven + the Spring Boot test JVM).
+- Set **`APP_PASSWORD`** (and optionally `APP_USER`, default `student`) on the host. The app runs any
+  Java code it receives, so never deploy it without a password.
+- Local check: `docker build -t java-command-center .` then
+  `docker run -p 3000:3000 -e APP_PASSWORD=secret java-command-center`.
+- Railway: New Project → Deploy from GitHub repo → it builds the `Dockerfile`; add `APP_PASSWORD`
+  under Variables; Settings → Networking → Generate Domain.

@@ -1,0 +1,14 @@
+node_modules
+.next
+.tools
+.git
+.runner-token
+.env*
+*.rar
+*.zip
+!java-grader/**/*.zip
+materials
+screenshots
+.screenshots
+java-grader/**/target
+*.log

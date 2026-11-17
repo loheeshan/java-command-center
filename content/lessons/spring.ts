@@ -18,7 +18,7 @@ export const springLessons: Lesson[] = [
       { kind: "university", label: "Lecture 7 — IoC container, component scanning, beans" },
       { kind: "mock-paper", label: "Starter project — DispatchApplication, pom.xml (Boot 4.1.1, springdoc 3.2.0)" },
     ],
-    videos: [{ video: "spring", chapter: 1 }, { video: "spring", chapter: 4 }, { video: "spring", chapter: 7 }, { video: "spring", chapter: 8 }],
+    videos: [{ video: "spring", chapter: 1 }, { video: "spring", chapter: 4 }, { video: "spring", chapter: 7 }, { video: "spring", chapter: 8 }, { video: "spring", chapter: 20 }],
     what: "**Spring Boot** is a framework that starts a web server, creates your objects (**beans**) and wires them together, and converts Java objects to/from **JSON** automatically. You mark classes with annotations and Spring does the plumbing.",
     why: "Without it you would write an HTTP server, JSON parsing and object wiring by hand. With it, a method annotated `@GetMapping(\"/missions\")` becomes an endpoint in one line. It is half of the practical (Spring Boot 40 + function validation 20).",
     when: "The whole practical project: `@SpringBootApplication` main class, `@RestController`, `@Service`, `@Repository`, `@RestControllerAdvice`.",

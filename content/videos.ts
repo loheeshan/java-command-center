@@ -68,7 +68,7 @@ export const VIDEOS: Record<"java" | "spring", VideoInfo> = {
     duration: "6:37:36",
     language: "Tamil (with English technical terms)",
     verifiedOn: "2026-11-16",
-    note: "Taught in Tamil. Database, Lombok, security and JWT chapters are beyond what the practical needs — skip them before Friday.",
+    note: "Taught in Tamil. Chapters 15–16, 18–19 and 21–23 (database, pagination, Lombok, logging, security, JWT, frontend) are beyond the practical — skip them before Friday. Chapter 17 uses @Valid, which the exam starter pom does not include: in the exam you check input by hand and return 400.",
     chapters: [
       j(1, "0:00:00", "What is SpringBoot?"), j(2, "0:01:34", "Installation and Setup"), j(3, "0:05:36", "Creating First Spring Project"),
       j(4, "0:16:26", "Hello World API"), j(5, "0:23:11", "API Basics"), j(6, "0:32:03", "HTTP Request Method Types"),

@@ -301,7 +301,7 @@ public class Main {
       { kind: "university", label: "Tutorial 3 — getProductById with Optional, DELETE, search with a stream + @RequestParam" },
       { kind: "university", label: "Lecture 6 — Optional.orElseThrow and the 500 problem; 'if you finish early: DELETE 204'" },
     ],
-    videos: [{ video: "spring", chapter: 12 }],
+    videos: [{ video: "spring", chapter: 12 }, { video: "spring", chapter: 14 }],
     what: "`Optional<T>` is a box that may or may not contain a value — the modern alternative to returning `null`. A **stream** processes a collection as a pipeline (`filter`, `map`, `findFirst`). REST conventions: `GET /items/{id}` returns one item or 404; `DELETE /items/{id}` returns **204 No Content**.",
     why: "The real paper's shape includes **GET by id** (Lecture 6 briefing, Task 4) and the briefing's stretch task is **DELETE → 204**. The lecture code uses `Optional` and `stream().filter(...)`, so you need to read and write them.",
     when: "Service methods that look something up; controller endpoints for single resources and deletion.",
