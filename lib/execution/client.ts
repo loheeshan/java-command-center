@@ -38,7 +38,8 @@ export async function checkRunner(force = false): Promise<RunnerStatus> {
   } catch {
     status = { state: "offline", message: "Could not reach the app server." };
   }
-  cached = { at: Date.now(), status };
+  // Only remember a good answer: an "offline" result (e.g. while the server is still starting) is retried.
+  cached = status.state === "online" ? { at: Date.now(), status } : null;
   return status;
 }
 
@@ -50,9 +51,18 @@ export function useRunnerStatus(): [RunnerStatus, () => void] {
   };
   useEffect(() => {
     let alive = true;
-    checkRunner().then((s) => alive && setStatus(s));
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // While offline, check again every 5 s (up to ~2 min) so a slow start or a one-off failure fixes itself.
+    const poll = (attempt: number) =>
+      checkRunner().then((s) => {
+        if (!alive) return;
+        setStatus(s);
+        if (s.state === "offline" && attempt < 24) timer = setTimeout(() => poll(attempt + 1), 5_000);
+      });
+    poll(0);
     return () => {
       alive = false;
+      clearTimeout(timer);
     };
   }, []);
   return [status, refresh];
